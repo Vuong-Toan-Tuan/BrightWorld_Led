@@ -1,0 +1,48 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" class=" ">
+<head>
+    <meta charset="utf-8" />
+    <title>Scale | Web Application</title>
+    <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="~/Content/app-assets/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/app-assets/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/app-assets/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/app-assets/css/icon.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/app-assets/css/font.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/app-assets/css/app.css" type="text/css" />
+    <!--[if lt IE 9]>
+      <script src="~/Content/app-assets/js/ie/html5shiv.js"></script>
+      <script src="~/Content/app-assets/js/ie/respond.min.js"></script>
+      <script src="~/Content/app-assets/js/ie/excanvas.js"></script>
+    <![endif]-->
+</head>
+<body class="">
+    <section id="content" class="m-t-lg wrapper-md animated fadeInUp">
+        <div class="container aside-xl">
+            <a class="navbar-brand block" href="index.html">Scale</a>
+            <section class="m-b-lg">
+                @RenderBody()
+            </section>
+        </div>
+    </section>
+    <!-- footer -->
+    <footer id="footer">
+        <div class="text-center padder">
+            <p>
+                <small>Web app framework base on Bootstrap<br>&copy; 2013</small>
+            </p>
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="~/Content/app-assets/js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Content/app-assets/js/bootstrap.js"></script>
+    <!-- App -->
+    <script src="~/Content/app-assets/js/app.js"></script>
+    <script src="~/Content/app-assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/app-assets/js/app.plugin.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

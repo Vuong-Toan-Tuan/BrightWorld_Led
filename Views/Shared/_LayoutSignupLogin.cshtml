@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/template/demo/app/assets/images/logo/favicon.png">
+
+    <!-- plugins css -->
+    <link rel="stylesheet" href="~/Content/template/demo/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/template/demo/bower_components/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="~/Content/template/demo/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+
+    <!-- page plugins css -->
+    @*<link rel="stylesheet" href="~/Content/template/demo/bower_components/bower-jvectormap/jquery-jvectormap-1.2.2.css" />
+        <link rel="stylesheet" href="~/Content/template/demo/bower_components/nvd3/build/nv.d3.min.css" />*@
+
+    <!-- core css -->
+    <link href="~/Content/template/demo/app/assets/css/ei-icon.css" rel="stylesheet">
+    <link href="~/Content/template/demo/app/assets/css/themify-icons.css" rel="stylesheet">
+    <link href="~/Content/template/demo/app/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/template/demo/app/assets/css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/template/demo/app/assets/css/app.css" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body>
+    <div class="app">
+        <div class="authentication">
+            <div class="sign-in">
+                <div class="row no-mrg-horizon">
+                    <div class="col-md-8 no-pdd-horizon hidden-xs">
+                        <div class="full-height bg" style=" background-image: url(https://news.panasonic.com/global/stories/images/india05.jpg)">
+                            <div class="img-caption">
+                                <h1 class="caption-title">LEDMI</h1>
+                                @*<p class="caption-text">Gentleman's Boutique in Montreal's Mile End | 5200 Clark St.</p>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 no-pdd-horizon">
+                        <div class="full-height bg-white height-100">
+                            <div class="vertical-align full-height pdd-horizon-70">
+                                <div class="table-cell">
+                                    <div class="pdd-horizon-15">
+
+
+                                        @RenderBody()
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="login-footer">
+                                <span class="far fa-lightbulb"></span> LEDMI                                
+                                <span class="font-size-13 pull-right pdd-top-10"><a href="/HomeUser/Index">Quay lại trang chủ và không đăng nhập.</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <script src="~/Content/template/demo//bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/template/demo//bower_components/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Content/template/demo//bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/Content/template/demo//bower_components/PACE/pace.min.js"></script>
+    <script src="~/Content/template/demo//bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <!-- endbuild -->
+    <!-- page plugins js -->
+    <script src="~/Content/template/demo//bower_components/bower-jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Content/template/demo/app/assets/js/maps/jquery-jvectormap-us-aea.js"></script>
+    <script src="~/Content/template/demo//bower_components/d3/d3.min.js"></script>
+    <script src="~/Content/template/demo//bower_components/nvd3/build/nv.d3.min.js"></script>
+    <script src="~/Content/template/demo//bower_components/jquery.sparkline/index.js"></script>
+    <script src="~/Content/template/demo//bower_components/chart.js/dist/Chart.min.js"></script>
+    <!-- build:js assets/js/app.min.js -->
+    <!-- core js -->
+    <script src="~/Content/template/demo/app/assets/js/app.js"></script>
+    <!-- endbuild -->
+    <!-- page js -->
+    <script src="~/Content/template/demo/app/assets/js/dashboard/dashboard.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

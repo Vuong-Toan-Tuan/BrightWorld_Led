@@ -1,0 +1,132 @@
+﻿@model BrightWorld_LED.Models.OrderModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShippingAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPayment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPayment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<h5>List Product</h5>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Image
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+
+    </tr>
+
+    @foreach (var item in ViewBag.ListProductOrder)
+    {
+        <tr>
+
+            <td>
+                <a href="/Home/Details/@item.ProductId" class="product_name">
+                    @Html.Action("getNamePro", "HomeUser", new { pid = item.ProductId })
+                </a>
+            </td>
+            <td>
+                <img width="75" height="75" alt="" src="@Html.Action("getImagePro", "HomeUser", new { pid = item.ProductId })">
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @item.Price
+            </td>
+
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

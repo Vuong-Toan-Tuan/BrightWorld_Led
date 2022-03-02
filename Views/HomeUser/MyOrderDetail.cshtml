@@ -1,0 +1,102 @@
+﻿@model BrightWorld_LED.Models.OrderModel
+
+@{
+    ViewBag.Title = "MyOrderDetail";
+    Layout = "~/Views/Shared/_LayoutUsers.cshtml";
+}
+<div style="background-color: #A9A9A9;">
+    <br /> <br /> <br /> <br />
+
+</div>
+
+<h2>MyOrderDetail</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName) : @Html.DisplayFor(model => model.FullName)
+        </dt>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone) : @Html.DisplayFor(model => model.Phone)
+        </dt>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingAddress) : @Html.DisplayFor(model => model.ShippingAddress)
+        </dt>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes) : @Html.DisplayFor(model => model.Notes)
+        </dt>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPayment) : @Html.DisplayFor(model => model.TotalPayment)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction) : @Html.DisplayFor(model => model.Transaction)
+        </dt>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderStatus) : @Html.DisplayFor(model => model.OrderStatus)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate) : @Html.DisplayFor(model => model.CreateDate)
+        </dt>
+
+
+    </dl>
+</div>
+<h5>List Product</h5>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Image
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+
+    </tr>
+
+    @foreach (var item in ViewBag.ListProductOrder)
+    {
+        <tr>
+
+            <td>
+                <a href="/Home/Details/@item.ProductId" class="product_name">
+                    @Html.Action("getNamePro", "HomeUser", new { pid = item.ProductId })
+                </a>
+            </td>
+            <td>
+                <img width="75" height="75" alt="" src="@Html.Action("getImagePro", "HomeUser", new { pid = item.ProductId })">
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @item.Price
+            </td>
+
+        </tr>
+    }
+
+</table>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |*@
+    @Html.ActionLink("Back to List", "Index")
+    <br />
+</p>

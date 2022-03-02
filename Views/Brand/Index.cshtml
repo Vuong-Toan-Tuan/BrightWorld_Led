@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BrightWorld_LED.Models.BrandModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrandName)
+                </td>
+                <td>
+                    <img src="@item.BrandImage" style="width:100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BrandId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BrandId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BrandId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}

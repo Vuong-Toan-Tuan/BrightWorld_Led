@@ -1,0 +1,341 @@
+﻿@model BrightWorld_LED.Models.ProductModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUsers.cshtml";
+}
+<div style="background-color: #A9A9A9;">
+    <br /> <br /> <br /> <br />
+
+</div>
+
+<main class="main-content" role="main">
+
+
+
+
+
+
+    <div id="breadcrumbs">
+        <div class="container">
+            <nav role="navigation" aria-label="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/HomeUser/Index" title="Quay lại trang trước">
+                            <span>Trang chủ /</span>
+                        </a>
+                    </li>
+
+
+
+
+                    <li>
+                        <a href="" title="Tất cả sản phẩm">
+                            <span>&nbsp;Tất cả sản phẩm / </span>
+                        </a>
+                    </li>
+
+
+                    <li class="active">
+                        <span>&nbsp;@Model.ProductName</span>
+                    </li>
+
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <section id="columns" class="columns-container product">
+        <div class="container">
+            <div class="row">
+                <div id="center_column" class="center_column col-sm-12 col-md-12">
+                    <div itemscope="" itemtype="http://schema.org/Product">
+                        <meta itemprop="url" content="//leo-food.mysapo.net/com-rang-thap-cam">
+                        <meta itemprop="image" content="">
+                        <div class="primary_block">
+
+                            <div class="row">
+                                <div class="product-left-column col-xs-12 col-sm-12 col-md-5">
+                                    <div id="image-block" class="image clearfix">
+
+                                        <span id="view_full_size">
+
+
+                                            <img id="proimage" class="img-responsive" itemprop="image" src="@Model.Image" alt="image">
+                                            <span class="span_link no-print status-enable"></span>
+                                        </span>
+                                    </div>
+                                    @foreach (var a in Model.SecondaryImageList)
+                                    {
+                                        @*<img src="@a" style="width: 100px;" />*@
+                                        <li>
+                                            <div class="w3_agile_portfolio_grid"  style="float: left">
+                                                <a href="@a">
+                                                    <img src="@a" alt=" " class="img-fluid radius-image" style="width: 100px;" >
+                                                    <!--<div class="w3layouts_news_grid_pos">
+                                                        <div class="wthree_text">
+                                                            <h3>@a</h3>-->
+                                                            @*<p>@a.Description</p>*@
+                                                        <!--</div>
+                                                    </div>-->
+                                                </a>
+                                            </div>
+                                        </li>
+                                    }
+
+
+                                </div>
+                                <div class="product-center-column col-xs-12 col-sm-12 col-md-7">
+                                    <h1 itemprop="name">@Model.ProductName</h1>
+                                    @*<div class="product-description rte" itemprop="description">
+
+                Nguồn gốc của mỳ tương đen Jajangmyeon là từ món mỳ Trung Quốc. Jajangmyeon là món mỳ ăn liền được phủ lên một lớp nước xốt, nước xốt này được làm từ một loại đậu tương đen. Ngoài ra Jajangmyeon còn bao gồm thịt và rau được thái nhỏ và có thể thêm chút hải sản vào.
+
+                ...
+            </div>
+
+
+
+
+
+        <div class="product-extra">
+                <ul class="list-unstyled description no-padding">
+                    <li><b>Nhãn hiệu: </b><a href="/vendors?query="></a></li>
+                    <li>
+                        <b>Tình trạng: </b>
+                        <span class="availability">
+
+                            <span class="available instock">Còn hàng</span>
+
+                        </span>
+                    </li>
+                </ul>
+        </div>*@
+                                    <div class="product-right-column col-xs-12 col-sm-12 col-md-7">
+                                        <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                                            <meta itemprop="priceCurrency" content="VND">
+                                            <link itemprop="availability" href="http://schema.org/InStock">
+
+                                            <form action="" method="post" enctype="multipart/form-data" id="add-to-cart-form">
+                                                <input type="hidden" id="ProductId" name="ProductId" value="@Model.ProductId" />
+                                                <input type="hidden" id="UserId" name="UserId" value="@Html.Action("getcurrenUserId", "HomeUser")" />
+                                                <input type="hidden" id="Price" name="Price" value="@Model.Price" />
+                                                <div class="product_price_content">
+
+                                                    <br /><b>Price: </b>
+                                                    <span>
+                                                        @{
+                                                            if (@Model.Discount > 0)
+                                                            {
+                                                                int price = @Model.Price;
+                                                                double discount = @Model.Discount;
+                                                                double a = price / discount;
+                                                                var b = price - (int)a;
+                                                                <span id="ProductPrice" class="price " itemprop="price" style="color:red">
+                                                                    @b₫
+                                                                </span>
+                                                                <del class="color-666 ml-2 mr-2">@price₫</del>
+                                                                <span>
+                                                                    - @Model.Discount%
+                                                                </span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span style="color: red">@Model.Price₫</span>
+                                                            }
+
+                                                        }
+                                                    </span>
+
+
+                                                </div><br />
+                                                <div>
+                                                    <b>Size:</b> @Model.Size
+                                                </div><br />
+                                                <div>
+                                                    <b>Power:</b> @Model.Power W
+                                                </div><br />
+                                                <div>
+                                                    <b>Light color:</b> @Model.LightColor
+                                                </div><br />
+                                                <div>
+                                                    <b>Available:</b> @Model.Quantity product
+                                                </div><br />
+
+
+                                                <div class="quantity_wanted_p clearfix">
+                                                    <label for="Quantity" class="quantity-selector">Số lượng:</label>
+                                                    <div class="">
+                                                        <div class="custom">
+                                                            <input type="number" id="Quantity" name="Quantity" value="1" min="1" class="input-text qty fix-inp-product">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <br />
+                                                <div class="border-box clear-fix">
+
+
+
+                                                    <button class="btn btn-danger btn-cart ajax_addtocart" title="Thêm vào giỏ hàng" id="addProductSubmit"><span><i class="icon-basket"></i> Thêm vào giỏ hàng</span></button>
+
+
+
+
+                                                </div>
+                                            </form>
+                                            <label id="lbMess" style="color: red">@ViewBag.LbMess</label>
+                                        </div>
+
+
+
+                                        <div class="line-product"></div>
+
+                                        <ul id="usefull_link_block" class="clearfix no-print list-inline">
+                                            <li class="print">
+                                                <a href="javascript:print();"><i class="fa fa-print"></i> In</a>
+                                            </li>
+                                        </ul>
+                                        <div class="line-product"></div>
+
+                                        
+                                        @*<div style="display:none" id="content-share">
+                                            <div class="share-desc">' + sharedesc + '</div>
+                                            <div class="share-title">' + sharetitle + '</div>
+                                        </div>
+                                        <script type="text/javascript">
+                                            $(document).ready(function () {
+                                                $('.btn.social-sharing').on('click', function () {
+                                                    var sharedesc = $(".share-desc").text();
+                                                    var sharetitle = $(".share-title").text();
+                                                    type = $(this).attr('data-type');
+                                                    if (type.length) {
+                                                        switch (type) {
+                                                            case 'twitter':
+                                                                window.open('https://twitter.com/intent/tweet?text=Cơm rang thập cẩm&amp;url=//leo-food.mysapo.net/com-rang-thap-cam', 'sharertwt', 'toolbar=0,status=0,width=640,height=445');
+                                                                break;
+                                                            case 'facebook':
+                                                                window.open('http://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fleo-food.mysapo.net/com-rang-thap-cam', 'sharer', 'toolbar=0,status=0,width=660,height=445');
+                                                                break;
+                                                            case 'google-plus':
+                                                                window.open('https://plus.google.com/share?url=//leo-food.mysapo.net/com-rang-thap-cam', 'sharer', 'toolbar=0,status=0,width=660,height=445');
+                                                                break;
+                                                            case 'linkedin':
+                                                                window.open('http://www.linkedin.com/shareArticle?mini=true&amp;url=//leo-food.mysapo.net/com-rang-thap-cam&amp;title=' + sharetitle + '&amp;summary=' + sharedesc + '&amp;source=http&#58;&#47;&#47;leo-food.mysapo.net/com-rang-thap-cam', 'sharerpinterest', 'toolbar=0,status=0,width=660,height=445');
+                                                                break;
+                                                            case 'pinterest':
+                                                                window.open('http://pinterest.com/pin/create/button/?url=//leo-food.mysapo.net/com-rang-thap-cam&amp;description=' + sharedesc + '&amp;media=', 'sharerpinterest', 'toolbar=0,status=0,width=660,height=445');
+                                                                break;
+                                                        }
+                                                    }
+                                                });
+                                            });
+                                        </script>*@
+
+
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="more_info_block">
+
+                            <ul class="nav nav-tabs tab-info page-product-heading">
+                                <li class="active">
+                                    <a href="#idTab1" data-toggle="tab">Thông tin chi tiết | &nbsp;</a>
+                                </li>
+                                <li class="">
+                                    <a href="#idTab2" data-toggle="tab">Nhận xét</a>
+                                </li>
+                            </ul>
+                            
+                            <div class="tab-content">
+                                <section id="idTab1" class="tab-pane page-product-box active">
+                                    <div class="rte">
+                                        <p style="color: rgb(0, 0, 0); font-family: Arial, Verdana, sans-serif; font-size: 14px; line-height: normal;">
+                                            <br>
+                                            @Model.Description
+                                        </p>
+
+                                        <p style="color: rgb(0, 0, 0); font-family: Arial, Verdana, sans-serif; font-size: 14px; line-height: normal;">Tuy có nguồn gốc ở Trung Quốc nhưng Jajangmyeon được biết đến như một món ăn nổi tiếng ở Hàn Quốc, tại một số quốc gia khác món mỳ này cũng được chế biến để phục vụ những công dân Hàn ở đó.</p>
+
+                                        <p style="color: rgb(0, 0, 0); font-family: Arial, Verdana, sans-serif; font-size: 14px; line-height: normal; text-align: center;"><img alt="" src="@Model.Image" style="width: 630px; height: 500px;"></p>
+                                    </div>
+                                </section>
+                                <section id="idTab2" class="tab-pane page-product-box">
+                                    <div style="float: left">
+                                        <form>
+                                            <label for="email"></label>
+                                            <input type="email" name="email" value="" style="width: 300px;" placeholder="Example@gmail.com" />
+                                            <br /><br />
+
+                                            <textarea name="comment" style="width: 300px; height: 150px"></textarea>
+                                            <br /><br />
+                                            <input type="button" value="submit" />
+                                        </form>
+                                    </div>
+                                    <div class="vertical-line" style="margin-left:20%; width: 1px; background-color: black; height: 250px; float: left;"></div>
+                                    <div>
+                                        &nbsp;&nbsp;Đánh giá!
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+                        <div class="product_related">
+
+
+
+
+
+
+
+
+
+                            
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+
+                                    $('#productrelated01 .owl-carousel').each(function () {
+                                        $(this).owlCarousel({
+                                            items: 4,
+                                            lazyLoad: true,
+                                            navigation: true,
+                                            addClassActive: true,
+                                            afterInit: SetOwlCarouselFirstLast,
+                                            afterAction: SetOwlCarouselFirstLast,
+
+                                            navigationText: ["<i class='fa fa-‹'></i>", "<i class='fa fa-›'></i>"]
+                                        });
+                                    });
+                                    function SetOwlCarouselFirstLast(el) {
+                                        el.find(".owl-item").removeClass("first");
+                                        el.find(".owl-item.active").first().addClass("first");
+
+                                        el.find(".owl-item").removeClass("last");
+                                        el.find(".owl-item.active").last().addClass("last");
+                                    };
+
+                                });
+                            </script>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.getElementById('Quantity').onchange = function () {
+            if ((document.getElementById('Quantity').value) > @Model.Quantity) {
+                alert('Số lượng bạn chọn không được nhiều hơn số lượng sản phẩm hiện có');
+                document.getElementById('Quantity').value = 1;
+            } 
+        };
+        
+
+    </script>
+</main>

@@ -1,0 +1,153 @@
+﻿@model IEnumerable<BrightWorld_LED.Models.ProductModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@*<link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">*@
+<link rel="stylesheet" type="text/css" href="~/Content/app-assets/vendors/css/tables/datatable/datatables.min.css">
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+        <div class="dataTables_length" id="myTable_length">
+            <label>
+                Show
+                <select name="myTable_length" aria-controls="myTable" class="">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                </select>
+                entries
+            </label>
+        </div>
+        <div id="myTable_filter" class="dataTables_filter">
+            <label>
+                Search:
+                <input type="search" class="" placeholder="" aria-controls="myTable">
+            </label>
+        </div>
+    </div>*@
+<table class="table zero-configuration" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand.BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondaryImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Power)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.LightColor)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.Material)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    <img src="@item.Image" style="width: 100px;" />
+                    @*@Html.DisplayFor(modelItem => item.Image)*@
+                </td>
+                <td>
+
+                    @*@Html.DisplayFor(modelItem => item.SecondaryImage)*@
+                    @foreach (var a in item.SecondaryImageList)
+                    {
+                        <img src="@a" style="width: 100px;" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Power)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LightColor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Material)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script src="~/Content/app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Content/app-assets/js/scripts/tables/datatables/datatable-basic.js"></script>
+    @*<script>
+        $(document).ready(function () {
+            $('.zero-configuration').DataTable();
+            $('#myTable').DataTable();
+        });
+    </script>*@
+}

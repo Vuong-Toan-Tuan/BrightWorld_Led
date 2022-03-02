@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BrightWorld_LED.Models.ProductModel>
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_LayoutUsers.cshtml";
+}
+<div style="background-color: #A9A9A9;">
+    <br /> <br /> <br /> <br />
+
+</div>
+<h2>Category @ViewBag.CategoryName.CategoryName</h2>
+<section class="w3l-features-8" id="products">
+    <!-- /features -->
+    <div class="features py-5">
+        <div class="container py-lg-5 py-md-4 py-2 HomePageProducts">
+            @*<h5 class="title-small text-center">Our Services</h5>
+                <h3 class="title-big text-center mb-md-5 mb-4">Our Products</h3>*@
+            <div class="fea-gd-vv text-center row justify-content-center">
+
+                @foreach (var item in Model)
+                {
+
+
+                    <div class="float-top col-lg-4 col-md-6">
+                        <a href="#url">
+                            <img src="@item.Image" class="img-responsive" alt="">
+                        </a>
+                        <div class="float-lt feature-gd">
+                            <h3>
+                                <a href="/HomeUser/Details/@item.ProductId">
+                                    @item.ProductName
+                                </a>
+                            </h3>
+                            <p>@item.Price</p>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+

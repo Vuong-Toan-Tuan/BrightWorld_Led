@@ -1,0 +1,177 @@
+﻿@model IEnumerable<BrightWorld_LED.Models.CartModel>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_LayoutUsers.cshtml";
+}
+<div style="background-color: #A9A9A9;">
+    <br /> <br /> <br /> <br />
+
+</div>
+
+
+<div id="breadcrumbs">
+    <div class="">
+        <nav role="navigation" aria-label="breadcrumbs">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="/HomeUser/Index" title="Quay lại trang trước">
+                        <span>Home&nbsp; /</span>
+                    </a>
+                </li>
+
+
+
+
+                <li>
+                    <a href="" title="Tất cả sản phẩm">
+                        <span>&nbsp;&nbsp;My Cart</span>
+                    </a>
+                </li>
+
+
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>*@
+        <th>
+            Name
+        </th>
+        <th>
+            Image
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>Tổng</th>
+        
+        <th></th>
+    </tr>
+    @{
+        double totalColum = 0;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>*@
+            <td>
+                <a href="/HomeUser/Details/@item.ProductId" class="product_name">
+                    @Html.Action("getNamePro", "HomeUser", new { pid = item.ProductId })
+                </a>
+            </td>
+            <td>
+                <img width="75" height="75" alt="@Html.Action("getNamePro", "HomeUser", new { pid = item.ProductId })" src="@Html.Action("getImagePro", "HomeUser", new { pid = item.ProductId })">
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td style="color:red">
+                @Html.DisplayFor(modelItem => item.Price)₫
+            </td>
+            <td  style="color:red">
+                <span class="visible-xs">Total: </span>
+                @{
+                    double a = item.Price;
+                    int b = item.Quantity;
+                    double totalRow = a * b;
+                    totalColum += totalRow;
+                }
+                <span class="price product-price"> @totalRow₫ </span>
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CartId })
+            </td>*@
+            <td>
+                @Html.ActionLink("Delete", "DeleteProductFromCart", new { cartId = item.CartId })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="list_button_cart clearfix">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 text-right">
+        <p>
+            <span class="cart__subtotal-title">Tổng cộng</span>
+            <span class="h3 cart__subtotal price product-price" style="color:#f8694d">@totalColum₫</span>
+        </p>
+        <p><em>Shipping and taxes</em></p>
+
+
+        <button class="btn btn-danger" id="checkout" title="Tiến hành thanh toán" type="button"><span>Place an order</span></button>
+
+    </div>
+</div>
+<div id="checkoutorder" style="display: none">
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        <h3>Thông tin nhận hàng</h3>
+        @*<input type="hidden" name="cartItemList" value=@listOrderDetail />*@
+
+        @*<input type="hidden" name="cod" value="true" />*@
+
+
+        <br />
+        <input type="hidden" name="UserId" value="@Html.Action("getcurrenUserId", "HomeUser")" />
+        <input type="text" name="FullName" value="" placeholder="Tên người nhận" />
+        <br /><br />
+        <input type="text" name="Phone" value="" placeholder="SĐT người nhận" />
+        <br /><br />
+        <input type="text" name="ShippingAddress" value="" placeholder="Địa chỉ" />
+        <br /><br />
+        <textarea name="Notes" value="" placeholder="Notes" class="ipnote"></textarea>
+
+        <input type="hidden" name="CreateDate" value="@DateTime.Now" />
+        @*<input type="hidden" name="discount" value="0" />
+        <input type="hidden" name="lat" value="0" />
+        <input type="hidden" name="lng" value="0" />*@
+        <input type="hidden" name="orderStatus" value="Submitted" />
+        @*@Html.EnumDropDownListFor(model => model2.orderStatus, htmlAttributes: new { @class = "form-control" })*@
+        
+        <br />
+        <input type="radio" name="Transaction" id="Transaction" class="input-radio" value="Trả tiền khi nhận đơn hàng" checked="checked">
+        <label for="Transaction">Trả tiền khi nhận đơn hàng</label>
+        <br><br />
+        <label for="TotalPayment">Total: @totalColum₫</label>
+        <input type="number" name="TotalPayment" value="@totalColum" style="display: none" />
+        <br /><br />
+        <div class="border-box clear-fix">
+            @*<a href="#" style="text-decoration: none">
+                    <span class="btn btn-outline btn-cart" title="Thêm vào giỏ hàng">Thêm vào giỏ hàng</span>
+                </a>*@
+            <input type="button" value="Cancel" id="Cancel" class="btn btn-outline-warning" />
+            <input type="reset" value="Reset" class="btn btn-outline-secondary" />
+
+            <input type="submit" value="Buy" class="btn btn-default btn btn-outline btn-cart" />
+        </div>
+    }
+</div>
+<label id="lbMess" style="color: red">@ViewBag.LbMess</label>
+<script language="javascript">
+
+                document.getElementById("Cancel").onclick = function () {
+                    document.getElementById("checkoutorder").style.display = 'none';
+                };
+
+                document.getElementById("checkout").onclick = function () {
+                    document.getElementById("checkoutorder").style.display = 'block';
+                };
+
+</script>
